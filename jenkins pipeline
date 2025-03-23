@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Stage 1: Build - Building the code'
-                git branch: 'main', url: ''
+                git branch: 'main', url: 'https://github.com/Harkaran4846/SIT223-task_6.2.git'
                 echo 'Installing dependencies...'
                 echo 'Building the React application...'
                 echo 'Hello'
