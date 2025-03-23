@@ -55,10 +55,9 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            script {
-                def powershellCommand = '''
+     post {
+            success {
+                powershell '''
                 $SMTPServer = "smtp.gmail.com"
                 $SMTPPort = 587
                 $SMTPFrom = "harkaran687@gmail.com"
@@ -68,15 +67,14 @@ pipeline {
                 $SMTPUsername = "harkaran687@gmail.com"
                 $SMTPPassword = "yuhourdgsxgyqeik"  
                 $SMTPEnableSSL = $true
-
+        
                 $SMTPClient = New-Object Net.Mail.SmtpClient($SMTPServer, $SMTPPort)
                 $SMTPClient.EnableSsl = $SMTPEnableSSL
                 $SMTPClient.Credentials = New-Object System.Net.NetworkCredential($SMTPUsername, $SMTPPassword)
                 $SMTPClient.Send($SMTPFrom, $SMTPTo, $SMTPSubject, $SMTPBody)
                 '''
-                powershell(powershellCommand)
+                echo "GREAT SUCCESS!"
             }
-            echo "GREAT SUCCESS!"
         }
 
         failure {
